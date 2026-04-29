@@ -1,7 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     box-sizing: border-box;
+    
 }
 
 body {
     background-color: #7D589E;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+    color:white;
+    font-weight: 400;
+}
+
+h2 {
+
+    color: #576066;
+    font-weight: 300;
+}
+
+section {
+    width: 500px;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+.div-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 16px
+}
+
+label {
+    margin-bottom: 8px;
+    text-align: start;   
+}
+
+input, select {
+    width: 70%;
+    height: 30px;
+    margin-bottom: 18px;
+    border-color: rgb(193, 209, 224);
+}
+
+input {
+    border: 1px solid rgb(193, 209, 224); 
+}
+
+button {
+    color: #7D589E;
+    background-color: white;
+    width: 120px;
+    height: 40px;
+    border: 1px solid #7D589E;
+    border-radius: 4px;
+    font-weight: 700;
+    margin: 0 auto;
+}
+
+button:hover {
+    cursor: pointer;
 }

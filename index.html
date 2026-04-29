@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./js/variables.js"></script>
+    <script defer src="./js/main.js"></script>
     <link rel="stylesheet" href="style/style.css">
-    <script src="js/variables.js" module></script>
-    <script defer src="js/main.js" module></script>
     <title>Proyecto Integrador de Javascript desde Cero</title>
 </head>
 <body>
     <h1>Seguros de Hogar</h1>
+    <section>
+        <div class="div-quote">
+            <h2 class="center separate">Completa los datos solicitados</h2>
+            
+            <label for="property">Selecciona el tipo de propiedad</label>
+            <select id="property">
+                <option selected disabled>...</option>
+            </select>
 
-    <div class="div-quote">
-        <h2 class="center separate">Completa los datos solicitados</h2>
-        <label for="property">Selecciona el tipo de propiedad</label>
-        <select name="" id="property">
-            <option selected disabled>...</option>
-            <option value="1.009">Casa</option>
-            <option value="1.005">P.H</option>
-            <option value="1.002">Dto. Edificio</option>
-            <option value="1.019">Barrio Privado</option>
-            <option value="1.039">Oficina</option>
-            <option value="1.041">Local comercial</option>
-            <option value="1.092">Depósito logística</option>
-        </select>
-        <label for="location">Selecciona tu ubicación</label>
-        <select name="" id="location">
-            <option selected disabled>...</option>
-            <option value="1.013">CABA</option>
-            <option value="1.004">Tandil</option>
-            <option value="1.029">Costa Atlántica</option>
-            <option value="1.000">Patagonia Argentina</option>
-        </select>
-    </div>
+            <label for="location">Selecciona tu ubicación</label>
+            <select id="location">
+                <option selected disabled>...</option>
+            </select>
+
+            <label for="squarem2">Ingresa los metros cuadrados de la vivienda: </label>
+            <input name="squarem2" id="squarem2" type="number" value="20" min="20" max="500">
+
+            <button id="calculate">COTIZAR</button>
+
+            <h3>Precio estimado: $ <span></span></h3>
+        </div>
+    </section>
 </body>
 </html>

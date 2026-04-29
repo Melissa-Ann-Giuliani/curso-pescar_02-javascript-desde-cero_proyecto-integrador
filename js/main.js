@@ -1,40 +1,64 @@
 const m2BaseCost = 1.16;
+const selectP = document.querySelector("select#property");
+const selectL = document.querySelector("select#location");
+const inputM2 = document.querySelector("input#squarem2");
+const calcButton = document.querySelector('button#calculate');
+const spanResult = document.querySelector("h3 span");
 
-let totalM2 = prompt("Ingresa los metros cuadrados de la vivienda: ");
-
-let propertyFM;
-let i = 0;
-let propertyInput = prompt("Ingrese tipo de vivienda:\n1- Casa\n2- P.H.\n3- Dto. Edificio\n4- Barrio Privado\n5- Oficina\n6- Local Comercial\n7-Depósito logística\n ");
-
-while(i<propertyData.length&&propertyData[i].tipo!==propertyInput){
-    i++;
+function loadProperties(){
+    let propertyOption = "";
+    for(let property of propertyData){
+        propertyOption += "<option>" + property.type + "</option>";
+    }
+    selectP.innerHTML += propertyOption;
 }
 
-if(i<propertyData.length){
-    propertyFM = propertyData[i];
-}else {
-    alert("Valor de vivienda incorrecto!");
+function loadLocations(){
+    let locationOption = "";
+    for(let location of locationData){
+        locationOption += "<option>" + location.type + "</option>";
+    }
+    selectL.innerHTML += locationOption;
 }
 
-let locationFM;
-let j = 0;
-let locationInput = prompt("Ingrese su Ubicación:\n1- CABA\n2- Tandil\n3- Costa Atlántica\n4- Patagonia Argentina\n");
-
-while(j<locationData.length&&locationData[j].tipo!==locationInput){
-    j++;
+function searchProperties(){
+    if(selectP.value !== ''){
+        for(let property of propertyData){
+            if(property.type === selectP.value){
+                return property.factor;
+            }
+        }
+    }
+    return null;
 }
 
-if(j<locationData.length){
-    locationFM = locationData[j];
-}else{
-    alert("Valor de ubicación incorrecto!");
+function searchLocations(){
+    if(selectL.value !== ''){
+        for(let location of locationData){
+            if(location.type === selectL.value){
+                return location.factor;
+            }
+        }
+    }
+    return null;
 }
 
-if(propertyFM.factor>1.000 && locationFM.factor>1.000 && parseInt(totalM2))
-{
-    let totalAmmount = propertyFM.factor*locationFM.factor*m2BaseCost*totalM2;
-    console.log(`Resultado de la multiplicación $ ${totalAmmount.toFixed(4)}`);
+calcButton.onclick = function() {
+    const propertyFM = searchProperties();
+    const locationFM = searchLocations();
+    const meters = parseInt(inputM2.value);
+
+    if(propertyFM && locationFM && meters){
+        let result = propertyFM * locationFM * meters * m2BaseCost;
+        spanResult.textContent = result.toFixed(2);
+        console.log(`El resultado es $${result.toFixed(2)}`);
+    }
+    else
+    {
+        spanResult.textContent = "ERROR";
+        console.warn("Hubo un error");
+    }
 }
-else {
-    console.warn("El factor de multiplicación no es superior a 1000.00 o los metros cuadrados no se pueden convertir a entero");
-}
+
+loadProperties();
+loadLocations();
