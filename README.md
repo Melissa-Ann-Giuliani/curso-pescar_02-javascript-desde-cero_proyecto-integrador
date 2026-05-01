@@ -184,3 +184,39 @@ calcButton.onclick = function() {
     }
 }
 ```
+
+## Módulo 5
+En la función asignada para cuando se le haga click al botón Cotizar, se coloca dentro del boton un gif a modo de simular carga, y se deshabilitan boton, input y selectores.
+Luego de un delay a través de setTimeout, el boton vuelve a mostrar su texto inicial, y todo elemento que estaba deshabilitado, se vuelve a habilitar, y se realiza el cálculo y muestra en el header correspondiente.
+```js
+calcButton.onclick = function() {
+    const propertyFM = searchProperties();
+    const locationFM = searchLocations();
+    const meters = parseInt(inputM2.value);
+
+    calcButton.innerHTML=`<img src="${buttonGif}" height="36px"  alt="loading">`
+    calcButton.disabled = true;
+    selectP.disabled = true;
+    selectL.disabled = true;
+    inputM2.disabled = true;
+
+    setTimeout(() => {
+        calcButton.innerHTML = "COTIZAR";
+        calcButton.disabled = false;
+        selectP.disabled = false;
+        selectL.disabled = false;
+        inputM2.disabled = false;
+
+        if(propertyFM && locationFM && meters){
+            let result = propertyFM * locationFM * meters * m2BaseCost;
+            spanResult.textContent = result.toFixed(2);
+            console.log(`El resultado es $${result.toFixed(2)}`);
+        }
+        else
+        {
+            spanResult.textContent = "ERROR";
+            console.warn("Hubo un error");
+        }
+    }, 1500);    
+}
+```

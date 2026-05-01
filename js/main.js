@@ -4,6 +4,7 @@ const selectL = document.querySelector("select#location");
 const inputM2 = document.querySelector("input#squarem2");
 const calcButton = document.querySelector('button#calculate');
 const spanResult = document.querySelector("h3 span");
+const buttonGif = '../img/animation.gif';
 
 function loadProperties(){
     let propertyOption = "";
@@ -48,16 +49,30 @@ calcButton.onclick = function() {
     const locationFM = searchLocations();
     const meters = parseInt(inputM2.value);
 
-    if(propertyFM && locationFM && meters){
-        let result = propertyFM * locationFM * meters * m2BaseCost;
-        spanResult.textContent = result.toFixed(2);
-        console.log(`El resultado es $${result.toFixed(2)}`);
-    }
-    else
-    {
-        spanResult.textContent = "ERROR";
-        console.warn("Hubo un error");
-    }
+    calcButton.innerHTML=`<img src="${buttonGif}" height="36px"  alt="loading">`
+    calcButton.disabled = true;
+    selectP.disabled = true;
+    selectL.disabled = true;
+    inputM2.disabled = true;
+
+    setTimeout(() => {
+        calcButton.innerHTML = "COTIZAR";
+        calcButton.disabled = false;
+        selectP.disabled = false;
+        selectL.disabled = false;
+        inputM2.disabled = false;
+
+        if(propertyFM && locationFM && meters){
+            let result = propertyFM * locationFM * meters * m2BaseCost;
+            spanResult.textContent = result.toFixed(2);
+            console.log(`El resultado es $${result.toFixed(2)}`);
+        }
+        else
+        {
+            spanResult.textContent = "ERROR";
+            console.warn("Hubo un error");
+        }
+    }, 1500);    
 }
 
 loadProperties();

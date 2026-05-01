@@ -69,3 +69,7 @@ button {
 button:hover {
     cursor: pointer;
 }
+
+h3 {
+    color: #7f3beb;
+}
